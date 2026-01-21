@@ -24,16 +24,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: "Not found." }, { status: 404 });
   }
 
-  const project =
-    data.project && Array.isArray(data.project) ? data.project[0] : data.project;
-
   return NextResponse.json({
     id: data.id,
     reason: data.reason,
     delta_cents: data.delta_cents,
     delay_days: data.delay_days,
     status: data.status,
-    project_name: project?.name,
-    client_name: project?.client_name
+    project_name: data.project?.name,
+    client_name: data.project?.client_name
   });
 }
